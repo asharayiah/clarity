@@ -1,4 +1,4 @@
-# Multilingual Homepage
+# Homepage
 
 This is a simple, responsive homepage built using Tailwind CSS and hosted on GitHub Pages.
 
