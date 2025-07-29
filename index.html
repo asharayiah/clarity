@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multilingual Homepage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center px-4 py-4">
+      <h1 class="text-2xl font-bold">Your Site Title</h1>
+      <nav class="mt-2 sm:mt-0">
+        <ul class="flex flex-wrap gap-4 text-sm sm:text-base">
+          <li><a href="#home" class="hover:text-blue-300">Home</a></li>
+          <li><a href="#about" class="hover:text-blue-300">About</a></li>
+          <li><a href="#contact" class="hover:text-blue-300">Contact</a></li>
+          <li>
+            <select id="languageSelector" class="text-black px-2 py-1 rounded">
+              <option value="en">English</option>
+              <option value="ar">العربية</option>
+              <option value="ru">Русский</option>
+              <option value="zh">中文</option>
+            </select>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="py-16 px-4">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <img src="https://via.placeholder.com/600x400" alt="Main visual" class="rounded-xl shadow-lg w-full" />
+      <div>
+        <h2 class="text-4xl font-bold mb-4" id="titleText">Welcome to Your Homepage</h2>
+        <p class="text-lg" id="bodyText">
+          This homepage supports multiple languages and responsive design using Tailwind CSS. You can easily switch between Arabic, Russian, and Chinese using the dropdown above.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 px-4 bg-gray-50">
+    <div class="max-w-4xl mx-auto text-center">
+      <h3 class="text-2xl font-semibold mb-4" id="aboutTitle">About This Project</h3>
+      <p class="text-md" id="aboutText">
+        This is a multilingual, responsive webpage template. Built for customization and expansion.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h3 class="text-2xl font-semibold mb-4" id="contactTitle">Contact</h3>
+      <p class="text-md" id="contactText">
+        For inquiries, collaboration, or feedback, feel free to reach out.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 text-center py-6 mt-16">
+    &copy; 2025 Your Name. All rights reserved.
+  </footer>
+
+  <!-- Language Switcher Script -->
+  <script>
+    const translations = {
+      en: {
+        titleText: "Welcome to Your Homepage",
+        bodyText: "This homepage supports multiple languages and responsive design using Tailwind CSS. You can easily switch between Arabic, Russian, and Chinese using the dropdown above.",
+        aboutTitle: "About This Project",
+        aboutText: "This is a multilingual, responsive webpage template. Built for customization and expansion.",
+        contactTitle: "Contact",
+        contactText: "For inquiries, collaboration, or feedback, feel free to reach out."
+      },
+      ar: {
+        titleText: "مرحبًا بكم في صفحتكم الرئيسية",
+        bodyText: "تدعم هذه الصفحة لغات متعددة وتصميمًا متجاوبًا باستخدام Tailwind CSS. يمكنك التبديل بسهولة بين العربية والروسية والصينية من القائمة أعلاه.",
+        aboutTitle: "حول هذا المشروع",
+        aboutText: "هذه صفحة ويب متعددة اللغات ومتجاوبة. مصممة للتخصيص والتوسعة.",
+        contactTitle: "اتصل بنا",
+        contactText: "للاستفسارات أو التعاون أو الملاحظات، لا تتردد في التواصل معنا."
+      },
+      ru: {
+        titleText: "Добро пожаловать на ваш сайт",
+        bodyText: "Эта домашняя страница поддерживает несколько языков и адаптивный дизайн с помощью Tailwind CSS. Вы можете легко переключаться между арабским, русским и китайским языками.",
+        aboutTitle: "О проекте",
+        aboutText: "Это многоязычный и адаптивный шаблон веб-страницы. Создан для гибкости и расширения.",
+        contactTitle: "Контакты",
+        contactText: "Для вопросов, сотрудничества или отзывов свяжитесь с нами."
+      },
+      zh: {
+        titleText: "欢迎来到您的主页",
+        bodyText: "此主页支持多语言和使用 Tailwind CSS 的响应式设计。您可以使用上方的下拉菜单轻松切换到阿拉伯语、俄语或中文。",
+        aboutTitle: "关于本项目",
+        aboutText: "这是一个多语言响应式网页模板。适合自定义和扩展使用。",
+        contactTitle: "联系",
+        contactText: "如有任何疑问、合作或反馈，欢迎联系我们。"
+      }
+    };
+
+    document.getElementById("languageSelector").addEventListener("change", function () {
+      const lang = this.value;
+      const t = translations[lang];
+      if (!t) return;
+
+      for (let key in t) {
+        const el = document.getElementById(key);
+        if (el) el.textContent = t[key];
+      }
+
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    });
+  </script>
+
+</body>
+</html>
