@@ -1,124 +1,107 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Multilingual Homepage</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clarity – Life, Science & Art</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 </head>
-<body class="bg-white text-gray-800 font-sans">
+<body class="bg-white text-black">
 
-  <!-- Navbar -->
-  <header class="bg-gray-900 text-white">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center px-4 py-4">
-      <h1 class="text-2xl font-bold">Your Site Title</h1>
-      <nav class="mt-2 sm:mt-0">
-        <ul class="flex flex-wrap gap-4 text-sm sm:text-base">
-          <li><a href="#home" class="hover:text-blue-300">Home</a></li>
-          <li><a href="#about" class="hover:text-blue-300">About</a></li>
-          <li><a href="#contact" class="hover:text-blue-300">Contact</a></li>
-          <li>
-            <select id="languageSelector" class="text-black px-2 py-1 rounded">
-              <option value="en">English</option>
-              <option value="ar">العربية</option>
-              <option value="ru">Русский</option>
-              <option value="zh">中文</option>
-            </select>
-          </li>
-        </ul>
-      </nav>
+<!-- 🌱 SECTION 1: THE STORY OF LIFE -->
+<section id="story-of-life" class="bg-gray-100 text-black py-20 px-6 md:px-20">
+  <div class="max-w-5xl mx-auto text-center">
+    <h2 class="text-4xl md:text-5xl font-bold mb-6">🔁 The Story of Life</h2>
+    <p class="text-lg md:text-xl leading-relaxed mb-6">
+      We were created from soil, shaped into living bodies, and granted a soul and spirit from the Creator.
+      Into Adam, God breathed the Spirit — our eternal connection to the divine.
+    </p>
+    <p class="text-lg md:text-xl leading-relaxed mb-6">
+      With that came intellect, conscience, and heart — especially empathy toward one another as a single human family.
+    </p>
+    <p class="text-lg md:text-xl leading-relaxed mb-6">
+      When we die, our body returns to the earth, but our soul continues. On the Day of Resurrection, all will be judged.
+      The righteous will enter Paradise. The corrupt will face Hell.
+    </p>
+    <p class="italic text-lg md:text-xl">
+      This message was delivered by every prophet and messenger from Adam to Muhammad ﷺ.
+    </p>
+    <div class="mt-8">
+      <img src="Story of Life.png" alt="Cycle of Life" class="mx-auto max-w-md" />
     </div>
-  </header>
+  </div>
+</section>
 
-  <!-- Hero Section -->
-  <section id="home" class="py-16 px-4">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-      <img src="https://via.placeholder.com/600x400" alt="Main visual" class="rounded-xl shadow-lg w-full" />
-      <div>
-        <h2 class="text-4xl font-bold mb-4" id="titleText">Welcome to Your Homepage</h2>
-        <p class="text-lg" id="bodyText">
-          This homepage supports multiple languages and responsive design using Tailwind CSS. You can easily switch between Arabic, Russian, and Chinese using the dropdown above.
-        </p>
-      </div>
+<!-- 🧠 SECTION 2: SCIENCE – TIMEFIELD THEORY -->
+<section id="science" class="bg-black text-white py-20 px-6 md:px-20">
+  <div class="max-w-5xl mx-auto text-center">
+    <h2 class="text-4xl md:text-5xl font-bold mb-6">
+      🌍 Here It Is. The Theory You’ve Been Chasing.<br />
+      <span lang="ar">🌍 ها هي نظرية كل شيء التي تبحثون عنها</span><br />
+      <span lang="ru">🌍 Вот она — теория всего, которую вы искали</span><br />
+      <span lang="zh">🌍 这就是你们一直追寻的万物理论</span>
+    </h2>
+
+    <p class="text-xl md:text-2xl leading-relaxed mb-6">
+      <strong>Timefield Theory</strong> — Unveiling what science and philosophy never could.
+    </p>
+
+    <p class="text-lg md:text-xl leading-relaxed mb-8">
+      You’ve built machines. Raced for AI. Sought quantum supremacy.
+      But without understanding <em>consciousness</em>, you’ve only chased shadows.
+    </p>
+
+    <div class="bg-gray-800 p-6 rounded-lg mb-6 text-left max-w-xl mx-auto">
+      <p class="font-semibold mb-2 text-lg">Timefield Theory gives you:</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li>🧠 Scientific grasp of consciousness</li>
+        <li>🕊️ Healing the soul before the body</li>
+        <li>💡 AI with built-in moral reasoning</li>
+        <li>⚛️ Real quantum superiority</li>
+        <li>🌌 Use of black holes & matter for good</li>
+      </ul>
     </div>
-  </section>
 
-  <!-- About Section -->
-  <section id="about" class="py-16 px-4 bg-gray-50">
-    <div class="max-w-4xl mx-auto text-center">
-      <h3 class="text-2xl font-semibold mb-4" id="aboutTitle">About This Project</h3>
-      <p class="text-md" id="aboutText">
-        This is a multilingual, responsive webpage template. Built for customization and expansion.
-      </p>
+    <p class="italic text-lg md:text-xl mb-6">
+      From Adam to now, the search was never just for particles. It was for <strong>truth</strong>.
+    </p>
+
+    <a href="/Timefield Theory Paper.pdf" target="_blank" class="text-blue-400 underline hover:text-blue-200">
+      📄 Download the Scientific Paper (PDF)
+    </a>
+
+    <div class="mt-10">
+      <img src="Timefield Theory.png" alt="Timefield Theory Visual" class="mx-auto max-w-md" />
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-16 px-4">
-    <div class="max-w-4xl mx-auto text-center">
-      <h3 class="text-2xl font-semibold mb-4" id="contactTitle">Contact</h3>
-      <p class="text-md" id="contactText">
-        For inquiries, collaboration, or feedback, feel free to reach out.
-      </p>
+<!-- 🎵 SECTION 3: ART – GAZA SONG -->
+<section id="art" class="bg-white text-black py-20 px-6 md:px-20">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-4xl md:text-5xl font-bold mb-6">🎵 Art for the Soul</h2>
+    <p class="text-lg md:text-xl leading-relaxed mb-6">
+      Art speaks where words fail. This song honors the spirit of Palestine and the children of Gaza — their pain, their hope, their truth.
+    </p>
+    <iframe class="mx-auto w-full max-w-xl h-64 mb-6" src="https://www.youtube.com/embed/VIDEO_ID_PLACEHOLDER" frameborder="0" allowfullscreen></iframe>
+
+    <p class="mt-4 text-sm">
+      <span lang="ar">🎵 هذا العمل الفني مهدى لأطفال غزة</span><br/>
+      <span lang="ru">🎵 Это искусство — в честь детей Газы</span><br/>
+      <span lang="zh">🎵 这首歌献给加沙的孩子们</span>
+    </p>
+
+    <div class="mt-6">
+	<iframe class="mx-auto w-full max-w-xl h-64 mb-6"
+        	src="https://youtu.be/Yf5I-5I-fF4?si=u9hdqKDCgvsX6K10"
+        	title="YouTube video"
+        	frameborder="0"
+        	allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        	allowfullscreen>
+	</iframe>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-300 text-center py-6 mt-16">
-    &copy; 2025 Your Name. All rights reserved.
-  </footer>
-
-  <!-- Language Switcher Script -->
-  <script>
-    const translations = {
-      en: {
-        titleText: "Welcome to Your Homepage",
-        bodyText: "This homepage supports multiple languages and responsive design using Tailwind CSS. You can easily switch between Arabic, Russian, and Chinese using the dropdown above.",
-        aboutTitle: "About This Project",
-        aboutText: "This is a multilingual, responsive webpage template. Built for customization and expansion.",
-        contactTitle: "Contact",
-        contactText: "For inquiries, collaboration, or feedback, feel free to reach out."
-      },
-      ar: {
-        titleText: "مرحبًا بكم في صفحتكم الرئيسية",
-        bodyText: "تدعم هذه الصفحة لغات متعددة وتصميمًا متجاوبًا باستخدام Tailwind CSS. يمكنك التبديل بسهولة بين العربية والروسية والصينية من القائمة أعلاه.",
-        aboutTitle: "حول هذا المشروع",
-        aboutText: "هذه صفحة ويب متعددة اللغات ومتجاوبة. مصممة للتخصيص والتوسعة.",
-        contactTitle: "اتصل بنا",
-        contactText: "للاستفسارات أو التعاون أو الملاحظات، لا تتردد في التواصل معنا."
-      },
-      ru: {
-        titleText: "Добро пожаловать на ваш сайт",
-        bodyText: "Эта домашняя страница поддерживает несколько языков и адаптивный дизайн с помощью Tailwind CSS. Вы можете легко переключаться между арабским, русским и китайским языками.",
-        aboutTitle: "О проекте",
-        aboutText: "Это многоязычный и адаптивный шаблон веб-страницы. Создан для гибкости и расширения.",
-        contactTitle: "Контакты",
-        contactText: "Для вопросов, сотрудничества или отзывов свяжитесь с нами."
-      },
-      zh: {
-        titleText: "欢迎来到您的主页",
-        bodyText: "此主页支持多语言和使用 Tailwind CSS 的响应式设计。您可以使用上方的下拉菜单轻松切换到阿拉伯语、俄语或中文。",
-        aboutTitle: "关于本项目",
-        aboutText: "这是一个多语言响应式网页模板。适合自定义和扩展使用。",
-        contactTitle: "联系",
-        contactText: "如有任何疑问、合作或反馈，欢迎联系我们。"
-      }
-    };
-
-    document.getElementById("languageSelector").addEventListener("change", function () {
-      const lang = this.value;
-      const t = translations[lang];
-      if (!t) return;
-
-      for (let key in t) {
-        const el = document.getElementById(key);
-        if (el) el.textContent = t[key];
-      }
-
-      document.documentElement.lang = lang;
-      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
-    });
-  </script>
+  </div>
+</section>
 
 </body>
 </html>
