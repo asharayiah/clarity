@@ -5,140 +5,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="favicon.png">
   <title>Clarity Bell Simulation</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* This will make all unvisited links green */
-        a:link {
-            color: #0000FF;
-        }
-
-        /* This will make all visited links red */
-        a:visited {
-            color: #800080;
-        }
-
-        /* This will make the link purple when you hover over it */
-        a:hover {
-            color: purple;
-        }
-    </style>
+  <style>
+    a:link {color: #0000FF;}
+    a:visited {color: #800080;}
+    a:hover {color: purple;}
+  </style>
+  <style>
+    body {
+      background-color: #f8fafc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    header {
+      background: linear-gradient(to right, #0f172a, #1e293b);
+    }
+  </style>
 </head>
-<body class="bg-white text-gray-800">
-  <section id="bell-simulation" class="p-4 md:p-8 max-w-6xl mx-auto">
-    <div class="flex flex-wrap gap-4 mb-6 text-sm justify-start">
-      <span class="font-semibold">🌍 Available in:</span>
-      <a href="index_ar.html" class="text-blue-600 underline">العربية</a>
-      <a href="index_ru.html" class="text-blue-600 underline">Русский</a>
-      <a href="index_zh.html" class="text-blue-600 underline">中文</a>
-    </div>
+<body class="text-gray-800">
+  <header class="p-6 text-white text-center">
+    <h1 class="text-4xl font-bold">Bell Inequality Simulation</h1>
+    <p class="text-lg text-gray-300">Demystifying Quantum Claims through Classical Logic</p>
+  </header>
+  <main class="p-4 md:p-8 max-w-6xl mx-auto">
+    <section class="mb-10">
+      <div class="flex flex-wrap gap-4 text-sm justify-start">
+        <span class="font-semibold">🌍 Available in:</span>
+        <a href="index_ar" class="text-blue-600 underline">العربية</a>
+        <a href="index_ru" class="text-blue-600 underline">Русский</a>
+        <a href="index_zh" class="text-blue-600 underline">中文</a>
+      </div>
 
-    <h2 class="text-3xl font-bold mb-2">Bell Inequality Simulation – A Classical Illusion</h2>
-    <h3 class="text-lg italic mb-6 text-gray-600">How a Classical System Can Mimic Quantum Features Without Entanglement</h3>
-
-    <p class="mb-6 text-lg text-gray-700">
-      This simulation shows that correlations violating Bell’s inequality can emerge from fully classical systems—without any quantum physics. Through deterministic logic, local variables, and synchronized clocks, this prototype demonstrates how quantum-like results can be imitated.
-    </p>
-
+      <h2 class="text-3xl font-bold mt-4 mb-2">A Classical Illusion of Quantum Entanglement</h2>
+      <p class="text-lg text-gray-700">
+        This simulation demonstrates how violations of Bell’s inequality — long held as proof of quantum entanglement — can be achieved through purely classical methods using synchronized clocks and logical algorithms.
+      </p>
+    </section>
     <div class="space-y-10">
-      <!-- I. Background & Framing -->
+    <!-- I. Background & Framing -->
       <div>
         <img src="Quantum_vs_Classical.png" alt="Quantum vs Classical" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
         <p class="mt-2 text-sm italic text-center text-gray-600">A side-by-side contrast of quantum claims vs classical simulation design.</p>
       </div>
-
       <div>
         <img src="What_Bell_Tests_Are_Really_Testing.png" alt="Bell Tests Framing" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">	
         <p class="mt-2 text-sm italic text-center text-gray-600">Hidden assumptions within Bell-type experiments revealed.</p>
       </div>
-
+    <section class="space-y-10">
       <div>
         <img src="Myth_of_Randomness.png" alt="Randomness Myth" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
         <p class="mt-2 text-sm italic text-center text-gray-600">Randomness may be waveform drift—not fundamental indeterminacy.</p>
       </div>
-
       <!-- II. Architecture & Logic Design -->
       <div>
         <img src="TILU_E_Simulation_Architecture.png" alt="TILU-E Architecture" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
         <p class="mt-2 text-sm italic text-center text-gray-600">Full TILU-E simulation architecture using classical hardware.</p>
       </div>
-
       <div>
         <img src="Logic_Gates_and_Variable_Selectors.png" alt="Logic Gate Overview" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
         <p class="mt-2 text-sm italic text-center text-gray-600">Logic gates and variable selectors powering classical simulation.</p>
       </div>
-
       <div>
         <img src="Sequential_Gate_Operations.png" alt="Logic Flow Design" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
         <p class="mt-2 text-sm italic text-center text-gray-600">Full logic design showing control variables and gate sequences.</p>
       </div>
-
       <div>
         <img src="Bell_Simulation_Timeline.png" alt="Timing Flow" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
         <p class="mt-2 text-sm italic text-center text-gray-600">Timing and synchronization flow across the classical nodes.</p>
       </div>
-
       <!-- III. Simulation Implementation & Results -->
       <div>
         <img src="The_Clarity_Bell_Simulation.png" alt="Simulation Setup" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
         <p class="mt-2 text-sm italic text-center text-gray-600">Final simulation setup and component architecture.</p>
       </div>
-
       <div>
         <img src="Bell_Inequality_Simulation_Full_Logic.png" alt="Simulation Logic Full" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
         <p class="mt-2 text-sm italic text-center text-gray-600">Bell setup logic diagram rendered in classical design.</p>
       </div>
-
       <div>
         <img src="Bell_Inequality_Simulation_Overview.png" alt="Simulation Overview" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
         <p class="mt-2 text-sm italic text-center text-gray-600">Overview of the classical simulation circuit and logic units.</p>
       </div>
-
       <!-- IV. Analysis & Interpretation -->
       <div>
         <img src="Real_vs_Simulated_Bell_Outcomes.png" alt="Outcome Comparison" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
         <p class="mt-2 text-sm italic text-center text-gray-600">Simulated outcomes matching quantum predictions using classical logic.</p>
       </div>
-
       <div>
         <img src="TILU_vs_Quantum_Comparison.png" alt="TILU vs Quantum" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
         <p class="mt-2 text-sm italic text-center text-gray-600">Feature-by-feature comparison between TILU-E and quantum mechanics.</p>
       </div>
-
       <div>
         <img src="Classical_vs_Quantum_Assumptions.png" alt="Assumption Contrast" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
         <p class="mt-2 text-sm italic text-center text-gray-600">Assumptions behind classical vs quantum paradigms contrasted.</p>
       </div>
-
       <div>
         <img src="TILU_E_Phase4_Bell_Correlation_Plot.png" alt="Correlation Plot" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
         <p class="mt-2 text-sm italic text-center text-gray-600">Bell correlation plot achieved using classical synchronization.</p>
       </div>
-
       <!-- V. Quote -->
-    <blockquote class="mt-10 border-l-4 border-black pl-4 italic text-gray-600">
-      “What if the mystery was never quantum... but our assumptions?”
+    </section>
+      <blockquote class="mt-10 border-l-4 border-black pl-4 italic text-gray-600">“What if the mystery was never quantum... but our assumptions?”
     </blockquote>
-
-    <div class="mt-10">
-      <h4 class="text-md font-semibold mb-2">📄 Documentation & Visual Downloads</h4>
-      <ul class="list-disc list-inside text-sm text-blue-700">
-        <li><a href="TILU_E_Phase4_Documentation.zip" class="underline">Full Phase 4 ZIP Bundle (PDFs)</a></li>
-        <li><a href="Clarity_Bell_Visual_Kit.zip" class="underline">All Infographics ZIP</a></li>
-        <li><a href="Scientific_Claim.pdf" class="underline">Scientific Framing PDF</a></li>
-        <li><a href="Public_Summary_Brief.pdf" class="underline">Public Summary Brief</a></li>
+    <blockquote class="mt-10 border-l-4 border-black pl-4 italic text-gray-600 text-lg">
+      “Maybe the mystery wasn’t quantum at all—but our assumptions about what’s real.”
+    </blockquote>
+    <section class="mt-10">
+      <h3 class="text-xl font-semibold mb-2">📂 Downloads</h3>
+      <ul class="list-disc list-inside text-blue-700 text-sm">
+        <li><a href="Prototypes/Entanglement/TILU_E_Phase4_Documentation.zip" class="underline">TILU-E Full Documentation ZIP</a></li>
+        <li><a href="Prototypes/Entanglement/Clarity_Bell_Visual_Kit.zip" class="underline">All Infographics</a></li>
+        <li><a href="Prototypes/Entanglement/Scientific_Claim.pdf" class="underline">Scientific Framing PDF</a></li>
+        <li><a href="Prototypes/Entanglement/Public_Summary_Brief.pdf" class="underline">Public Summary Brief</a></li>
       </ul>
-    </div>
-</section>    
-    <footer class="mt-2 py-2 text-center text-sm text-gray-400">
-      <style>
-        .spaced-links span {margin-right: 100px; text-center text-sm mt-10 text-gray-400}
-      </style>
-      <div class="spaced-links">
-        <span class="text-blue-400">— asharyaiah</span>
-        <span><a href="https://linkedin.com/in/asharayiah" target="_blank">linkedin.com/in/asharayiah</a></span>
-        <span><a href="https://x.com/asharayiah" target="_blank">x.com/asharayiah</a></span>
-      </div>  
-        &copy; 2025 Final Message — All rights reserved.
-    </footer>
+    </section>
+  </main>
+  <footer class="mt-2 py-2 text-center text-sm text-gray-400">
+    <style>
+      .spaced-links span {margin-right: 100px; text-center text-sm mt-10 text-gray-400}
+    </style>
+    <div class="spaced-links">
+      <span class="text-blue-400">— asharyaiah</span>
+      <span><a href="https://linkedin.com/in/asharayiah" target="_blank">linkedin.com/in/asharayiah</a></span>
+      <span><a href="https://x.com/asharayiah" target="_blank">x.com/asharayiah</a></span>
+    </div>  
+        &copy; 2025 Clarity — All rights reserved.
+  </footer>
 </body>
 </html>
