@@ -1,86 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bell Inequality Simulation – A Classical Illusion</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <title>Clarity Bell Simulation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* This will make all unvisited links green */
+        a:link {
+            color: #0000FF;
+        }
+
+        /* This will make all visited links red */
+        a:visited {
+            color: #800080;
+        }
+
+        /* This will make the link purple when you hover over it */
+        a:hover {
+            color: purple;
+        }
+    </style>
 </head>
-<body class="bg-white text-gray-900 font-sans">
+<body class="bg-white text-gray-800">
+  <section id="bell-simulation" class="p-4 md:p-8 max-w-6xl mx-auto">
+    <div class="flex flex-wrap gap-4 mb-6 text-sm justify-start">
+      <span class="font-semibold">🌍 Available in:</span>
+      <a href="index_ar.html" class="text-blue-600 underline">العربية</a>
+      <a href="index_ru.html" class="text-blue-600 underline">Русский</a>
+      <a href="index_zh.html" class="text-blue-600 underline">中文</a>
+    </div>
 
-  <main class="max-w-5xl mx-auto p-4 md:p-8">
-    <section id="bell-simulation" class="bg-gray-50 rounded-xl shadow p-6">
-      <div class="flex flex-wrap gap-4 mb-4 text-sm justify-start">
-        <span class="font-semibold">🌍 Available in:</span>
-        <a href="/ar/bell-simulation" class="text-blue-600 underline">العربية</a>
-        <a href="/ru/bell-simulation" class="text-blue-600 underline">Русский</a>
-        <a href="/zh/bell-simulation" class="text-blue-600 underline">中文</a>
+    <h2 class="text-3xl font-bold mb-2">Bell Inequality Simulation – A Classical Illusion</h2>
+    <h3 class="text-lg italic mb-6 text-gray-600">How a Classical System Can Mimic Quantum Features Without Entanglement</h3>
+
+    <p class="mb-6 text-lg text-gray-700">
+      This simulation shows that correlations violating Bell’s inequality can emerge from fully classical systems—without any quantum physics. Through deterministic logic, local variables, and synchronized clocks, this prototype demonstrates how quantum-like results can be imitated.
+    </p>
+
+    <div class="space-y-10">
+      <!-- I. Background & Framing -->
+      <div>
+        <img src="prototypes/Entanglement/Quantum_vs_Classical.png" alt="Quantum vs Classical" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
+        <p class="mt-2 text-sm italic text-center text-gray-600">A side-by-side contrast of quantum claims vs classical simulation design.</p>
       </div>
 
-      <h1 class="text-3xl font-bold mb-2">Bell Inequality Simulation – A Classical Illusion</h1>
-      <h2 class="text-md text-gray-700 italic mb-4">A Minimal Classical Setup to Challenge Maximal Quantum Claims</h2>
-
-      <p class="mb-4 text-lg">
-        This prototype demonstrates how outcome correlations that appear to violate Bell's inequality can be produced
-        using only classical components, deterministic logic, and synchronized timing — without quantum physics or entanglement.
-      </p>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <div>
-          <img src="Prototypes/Entanglement/TILU_E_Phase4_Bell_Correlation_Plot.png" alt="Bell Correlation Plot" class="rounded-lg shadow">
-        </div>
-        <div class="text-sm">
-          <p class="mb-2">
-            Two independent nodes, each with their own local axis selector, produced measurement outcomes that — when compared — show
-            apparent correlations depending on axis pairings. The illusion of quantum nonlocality is created
-            through timing synchronization and algorithmic logic.
-          </p>
-          <a href="Prototypes/Entanglement/TILU_E_Phase4_Bell_Engineer_Package.zip" class="inline-block mt-2 px-4 py-2 bg-black text-white rounded hover:bg-gray-800 transition">
-            Download Prototype ZIP
-          </a>
-        </div>
+      <div>
+        <img src="prototypes/Entanglement/What_Bell_Tests_Are_Really_Testing.png" alt="Bell Tests Framing" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">	
+        <p class="mt-2 text-sm italic text-center text-gray-600">Hidden assumptions within Bell-type experiments revealed.</p>
       </div>
 
-      <p class="mb-4 text-sm text-gray-600">
-        No entangled particles. No photons. No spooky action. Just synchronized logic and local axis decisions.
-      </p>
-
-      <blockquote class="border-l-4 border-black pl-4 italic text-gray-600 mb-6">
-        “What if the mystery was never quantum... but our assumptions?”
-      </blockquote>
-
-      <div class="text-sm text-gray-700 mb-6">
-        <p class="mb-2 font-semibold">Educational Note:</p>
-        <p class="mb-4">
-          This simulation is intended as an open-ended educational experiment for students, educators, and logic circuit designers interested in foundational questions. It does not prove or disprove any physical theory — but it demonstrates that similar patterns to quantum experiments can emerge from purely classical systems.
-        </p>
-        <p class="text-xs italic text-gray-500">
-          This project does not reveal or rely on any known or unknown physical theory. It is a technical simulation designed for educational purposes.
-        </p>
+      <div>
+        <img src="prototypes/Entanglement/Myth_of_Randomness.png" alt="Randomness Myth" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
+        <p class="mt-2 text-sm italic text-center text-gray-600">Randomness may be waveform drift—not fundamental indeterminacy.</p>
       </div>
 
-      <div class="mb-6">
-        <h3 class="text-md font-semibold mb-2">Advanced Mode: Waveform Drift Simulation</h3>
-        <p class="text-sm mb-3">
-          By enabling waveform drift logic, this simulation introduces a small deterministic variability between signal generation and detector axis rotation.
-          This creates the appearance of probabilistic correlations — mimicking quantum randomness — while remaining fully local and reproducible.
-        </p>
-        <p class="text-xs text-gray-500 italic">
-          This feature challenges the assumption that randomness and violation of inequalities are exclusive to quantum systems.
-        </p>
+      <!-- II. Architecture & Logic Design -->
+      <div>
+        <img src="prototypes/Entanglement/TILU_E_Simulation_Architecture.png" alt="TILU-E Architecture" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
+        <p class="mt-2 text-sm italic text-center text-gray-600">Full TILU-E simulation architecture using classical hardware.</p>
       </div>
 
-      <div class="mb-4">
-        <h3 class="text-md font-semibold mb-2">📄 Documentation Downloads</h3>
-        <ul class="list-disc list-inside text-sm text-blue-700">
-          <li><a href="/downloads/TILU_E_Phase4_Documentation.zip" class="underline">Full Phase 4 ZIP Bundle (PDFs)</a></li>
-          <li><a href="/downloads/Public_Summary_Brief.pdf" class="underline">Public Summary Brief</a></li>
-          <li><a href="/downloads/Scientific_Claim.pdf" class="underline">Scientific Framing</a></li>
-          <li><span class="italic text-gray-500">Private Guardianship Note (confidential – not public)</span></li>
-        </ul>
+      <div>
+        <img src="prototypes/Entanglement/Logic_Gates_and_Variable_Selectors.png" alt="Logic Gate Overview" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
+        <p class="mt-2 text-sm italic text-center text-gray-600">Logic gates and variable selectors powering classical simulation.</p>
       </div>
-    </section>
-  </main>
 
+      <div>
+        <img src="prototypes/Entanglement/Sequential_Gate_Operations.png" alt="Logic Flow Design" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
+        <p class="mt-2 text-sm italic text-center text-gray-600">Full logic design showing control variables and gate sequences.</p>
+      </div>
+
+      <div>
+        <img src="prototypes/Entanglement/Bell_Simulation_Timeline.png" alt="Timing Flow" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
+        <p class="mt-2 text-sm italic text-center text-gray-600">Timing and synchronization flow across the classical nodes.</p>
+      </div>
+
+      <!-- III. Simulation Implementation & Results -->
+      <div>
+        <img src="prototypes/Entanglement/The_Clarity_Bell_Simulation.png" alt="Simulation Setup" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
+        <p class="mt-2 text-sm italic text-center text-gray-600">Final simulation setup and component architecture.</p>
+      </div>
+
+      <div>
+        <img src="prototypes/Entanglement/Bell_Inequality_Simulation_Full_Logic.png" alt="Simulation Logic Full" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
+        <p class="mt-2 text-sm italic text-center text-gray-600">Bell setup logic diagram rendered in classical design.</p>
+      </div>
+
+      <div>
+        <img src="prototypes/Entanglement/Bell_Inequality_Simulation_Overview.png" alt="Simulation Overview" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
+        <p class="mt-2 text-sm italic text-center text-gray-600">Overview of the classical simulation circuit and logic units.</p>
+      </div>
+
+      <!-- IV. Analysis & Interpretation -->
+      <div>
+        <img src="prototypes/Entanglement/Real_vs_Simulated_Bell_Outcomes.png" alt="Outcome Comparison" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
+        <p class="mt-2 text-sm italic text-center text-gray-600">Simulated outcomes matching quantum predictions using classical logic.</p>
+      </div>
+
+      <div>
+        <img src="prototypes/Entanglement/TILU_vs_Quantum_Comparison.png" alt="TILU vs Quantum" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
+        <p class="mt-2 text-sm italic text-center text-gray-600">Feature-by-feature comparison between TILU-E and quantum mechanics.</p>
+      </div>
+
+      <div>
+        <img src="prototypes/Entanglement/Classical_vs_Quantum_Assumptions.png" alt="Assumption Contrast" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
+        <p class="mt-2 text-sm italic text-center text-gray-600">Assumptions behind classical vs quantum paradigms contrasted.</p>
+      </div>
+
+      <div>
+        <img src="prototypes/Entanglement/TILU_E_Phase4_Bell_Correlation_Plot.png" alt="Correlation Plot" class="rounded-xl shadow w-full md:w-1/2 lg:w-1/2 mx-auto">
+        <p class="mt-2 text-sm italic text-center text-gray-600">Bell correlation plot achieved using classical synchronization.</p>
+      </div>
+
+      <!-- V. Quote -->
+    <blockquote class="mt-10 border-l-4 border-black pl-4 italic text-gray-600">
+      “What if the mystery was never quantum... but our assumptions?”
+    </blockquote>
+
+    <div class="mt-10">
+      <h4 class="text-md font-semibold mb-2">📄 Documentation & Visual Downloads</h4>
+      <ul class="list-disc list-inside text-sm text-blue-700">
+        <li><a href="TILU_E_Phase4_Documentation.zip" class="underline">Full Phase 4 ZIP Bundle (PDFs)</a></li>
+        <li><a href="Clarity_Bell_Visual_Kit.zip" class="underline">All Infographics ZIP</a></li>
+        <li><a href="Scientific_Claim.pdf" class="underline">Scientific Framing PDF</a></li>
+        <li><a href="Public_Summary_Brief.pdf" class="underline">Public Summary Brief</a></li>
+      </ul>
+    </div>
+</section>    
+    <footer class="mt-2 py-2 text-center text-sm text-gray-400">
+      <style>
+        .spaced-links span {margin-right: 100px; text-center text-sm mt-10 text-gray-400}
+      </style>
+      <div class="spaced-links">
+        <span class="text-blue-400">— asharyaiah</span>
+        <span><a href="https://linkedin.com/in/asharayiah" target="_blank">linkedin.com/in/asharayiah</a></span>
+        <span><a href="https://x.com/asharayiah" target="_blank">x.com/asharayiah</a></span>
+      </div>  
+        &copy; 2025 Final Message — All rights reserved.
+    </footer>
 </body>
 </html>
