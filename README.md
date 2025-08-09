@@ -1,20 +1,17 @@
-# Homepage
 
-This is a simple, responsive homepage built using Tailwind CSS and hosted on GitHub Pages.
+# Clarity — GitHub Pages (i18n + Auto-Redirect + Social Meta)
 
-## Features
-- English, Arabic, Russian, and Chinese language support
-- Responsive design with grid/flex layout
-- Tailwind CSS via CDN
-- GitHub Pages ready
+## Deploy
+- Upload these files to a public GitHub repo.
+- Settings → Pages → Source: Deploy from a branch (main /docs).
+- Replace DOMAIN in meta tags with your real domain or GitHub Pages URL.
 
-## Live Demo
-Once deployed, your site will be available at:
-```
-https://yourusername.github.io/multilingual_homepage/
-```
+## Auto-Redirect
+- The root page (/index.html) redirects users based on browser language (ar/ru/zh).
+- Add `?noredirect=1` to bypass during testing.
 
-## Instructions
-1. Clone the repo or upload files to GitHub
-2. Enable GitHub Pages in repo settings
-3. Done!
+## Full-Res Assets
+- Upload PNG/PDF/ZIP into `docs/assets/full/` with the expected filenames.
+- Thumbnails are in `docs/assets/web/`.
+
+— Updated 2025-08-09T05:45:27.212190Z
