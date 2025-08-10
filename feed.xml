@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>The Clarity Project — Updates</title>
+    <link>https://YOUR-DOMAIN/</link>
+    <description>News and releases from The Clarity Project</description>
+    <language>en</language>
+
+    <item>
+      <title>Stage-2 (Metaphysics) updated with Methods & Demo Chart</title>
+      <link>https://YOUR-DOMAIN/proofs/metaphysics.html</link>
+      <guid>https://YOUR-DOMAIN/proofs/metaphysics.html#update-2025-08-10</guid>
+      <pubDate>Sun, 10 Aug 2025 00:00:00 GMT</pubDate>
+      <description>Added a public-safe Methods box and a live chart rendering phase_noise_std from the sample CSV. Logical tone only.</description>
+    </item>
+
+    <item>
+      <title>Stage-3 (Spiritual Reality) logical structure posted</title>
+      <link>https://YOUR-DOMAIN/proofs/spiritual.html</link>
+      <guid>https://YOUR-DOMAIN/proofs/spiritual.html#structure-2025-08-10</guid>
+      <pubDate>Sun, 10 Aug 2025 00:00:00 GMT</pubDate>
+      <description>Logic-first framework: commitments, ontology & alignment, ethics & safeguards, practices, testable implications, skeptical FAQ.</description>
+    </item>
+  </channel>
+</rss>
