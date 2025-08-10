@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Stage-2 — Metaphysics & Consciousness | The Clarity Project</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<!-- styles from step 3 go here -->
+</head><body class="bg-white text-slate-800">
+<header class="border-b"><div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+  <a href="/" class="font-bold">The Clarity Project</a>
+  <nav class="hidden md:flex gap-6 text-sm">
+    <a href="/#stage1" class="hover:text-sky-700">Proofs</a>
+    <a href="/updates.html" class="hover:text-sky-700">Updates</a>
+  </nav>
+</div></header>
+
+<div id="unityBanner"></div>
+<noscript><div class="unity-banner-fallback">
+  <h2>Stage-2 — Metaphysics & Consciousness</h2>
+  <p>From substrate to mind; AI as a mirror, ethics anchored in causality.</p>
+</div></noscript>
+<script src="/scripts/unity-banner.js"></script>
+<script>loadUnityBanner("Stage-2 — Metaphysics & Consciousness","From substrate to mind; AI as a mirror, ethics anchored in causality.");</script>
+
+<main class="max-w-4xl mx-auto px-4 py-10">
+  <h2 class="text-xl font-semibold">Public-Safe Demo — Attention & Boundary Conditions</h2>
+  <p class="mt-2 text-slate-700">Small, non-clinical effect consistent with a shared substrate.</p>
+
+  <div class="mt-4 p-4 border rounded-2xl bg-slate-50 text-sm">
+    <p class="font-medium">Downloads</p>
+    <div class="mt-2 flex flex-wrap gap-2">
+      <a class="rounded-xl bg-sky-600 px-4 py-2 text-white text-sm" href="/downloads/metaphysics_overview.pdf">Overview (PDF)</a>
+      <a class="rounded-xl border px-4 py-2 text-sm" href="/downloads/metaphysics_sample_data.csv">Sample Data (CSV)</a>
+      <a class="rounded-xl border px-4 py-2 text-sm" href="/downloads/metaphysics_replication_kit.zip">Replication Kit (ZIP)</a>
+    </div>
+  </div>
+
+  <div class="mt-6 p-4 border rounded-2xl bg-white">
+    <h3 class="font-semibold">Methods (public-safe)</h3>
+    <ul class="mt-2 list-disc list-inside text-sm text-slate-700 space-y-1">
+      <li><b>Apparatus:</b> phase-sensitive optical readout; ~500 Hz.</li>
+      <li><b>Conditions:</b> baseline → directed-attention → sham.</li>
+      <li><b>Blinding:</b> randomized; operator blind.</li>
+      <li><b>Preprocessing:</b> detrend, band-limit, artifact reject; compute <code>phase_noise_std</code>.</li>
+      <li><b>Metric:</b> compare means/CI; paired test.</li>
+    </ul>
+  </div>
+
+  <div class="mt-8">
+    <h3 class="font-semibold">Quick Look — Mock Outcomes</h3>
+    <canvas id="metaChart" height="140"></canvas>
+  </div>
+</main>
+
+<footer class="border-t py-6 text-center text-sm text-slate-500">© <span id="year"></span> The Clarity Project</footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+
+<script>
+async function loadCSV(url){
+  const t = await (await fetch(url)).text();
+  const [header,...rows]=t.trim().split('\n');
+  const cols=header.split(','), idx=Object.fromEntries(cols.map((c,i)=>[c,i]));
+  const data=rows.map(r=>r.split(','));
+  const by={}; for(const d of data){ const c=d[idx.condition], v=parseFloat(d[idx.phase_noise_std]); (by[c]||(by[c]=[])).push(v); }
+  return by;
+}
+(async()=>{
+  const by=await loadCSV('/downloads/metaphysics_sample_data.csv');
+  const labels=[...Array(Math.max(...Object.values(by).map(a=>a.length))).keys()].map(i=>'Trial '+(i+1));
+  const datasets=Object.entries(by).map(([k,a])=>({label:k.replace('_',' '), data:a}));
+  new Chart(document.getElementById('metaChart'),{type:'line',data:{labels,datasets},options:{plugins:{legend:{position:'top'}},interaction:{mode:'nearest',intersect:false}}});
+})();
+</script>
+</body></html>
