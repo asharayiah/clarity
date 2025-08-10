@@ -1,1 +1,84 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Unification | The Clarity Project</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<!-- styles from step 3 go here -->
+<style>
+.unity-banner, .unity-banner-fallback{
+  background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+  color:#fff; padding:1.5rem; margin-bottom:1.5rem; border-radius:12px;
+  box-shadow:0 2px 10px rgba(0,0,0,.5); text-align:center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.unity-banner { opacity:0; animation:fadeInGlow 1.5s ease forwards; }
+.unity-banner h2, .unity-banner-fallback h2{ margin:0 0 .5rem; font-size:1.8rem; font-weight:600; color:#00e6e6; }
+.unity-banner p, .unity-banner-fallback p{ margin:0; font-size:1.1rem; color:#ccc; }
+@media (max-width:600px){ .unity-banner h2,.unity-banner-fallback h2{font-size:1.4rem;} .unity-banner p,.unity-banner-fallback p{font-size:1rem;} }
+@keyframes fadeInGlow { 0%{opacity:0; box-shadow:0 0 0 rgba(0,230,230,0)} 100%{opacity:1; box-shadow:0 0 20px rgba(0,230,230,.3)} }
+</style>
+</head><body class="bg-white text-slate-800">
+<header class="border-b"><div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+  <a href="/" class="font-bold">The Clarity Project</a>
+  <nav class="hidden md:flex gap-6 text-sm">
+    <a href="/#stage1" class="hover:text-sky-700">Proofs</a>
+    <a href="/updates.html" class="hover:text-sky-700">Updates</a>
+  </nav>
+</div></header>
 
+<div id="unityBanner"></div>
+<noscript><div class="unity-banner-fallback">
+  <h2>Unification</h2>
+  <p>Unification</p>
+</div></noscript>
+<script src="/scripts/unity-banner.js"></script>
+<script>loadUnityBanner("Unification");</script>
+
+<main class="max-w-4xl mx-auto px-4 py-10">
+  <h2 class="text-xl font-semibold">Public-Safe Demo — Unification</h2>
+
+  <div class="mt-4 p-4 border rounded-2xl bg-slate-50 text-sm">
+    <p class="font-medium">Downloads</p>
+    <div class="mt-2 flex flex-wrap gap-2">
+      <a class="rounded-xl bg-sky-600 px-4 py-2 text-white text-sm" href="/downloads/Unification_overview.pdf">Overview (PDF)</a>
+      <a class="rounded-xl border px-4 py-2 text-sm" href="/downloads/Unification_sample_data.csv">Sample Data (CSV)</a>
+      <a class="rounded-xl border px-4 py-2 text-sm" href="/downloads/Unification_replication_kit.zip">Replication Kit (ZIP)</a>
+    </div>
+  </div>
+
+  <div class="mt-6 p-4 border rounded-2xl bg-white">
+    <h3 class="font-semibold">Methods (public-safe)</h3>
+    <ul class="mt-2 list-disc list-inside text-sm text-slate-700 space-y-1">
+      <li>Unification 1.</li>
+      <li>Unification 2.</li>
+      <li>Unification 3.</li>
+    </ul>
+  </div>
+
+  <div class="mt-8">
+    <h3 class="font-semibold">Quick Look — Unification</h3>
+    <canvas id="fringeChart" height="140"></canvas>
+  </div>
+</main>
+
+<footer class="border-t py-6 text-center text-sm text-slate-500">© <span id="year"></span> The Clarity Project</footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+
+<script>
+async function loadCSV(url){
+  const t = await (await fetch(url)).text();
+  const [h,...rows]=t.trim().split('\n');
+  const cols=h.split(','), idx=Object.fromEntries(cols.map((c,i)=>[c,i]));
+  const data=rows.map(r=>r.split(',').map(s=>s.trim()));
+  return { phases:data.map(d=>+d[idx.phase_shift_deg]), intens:data.map(d=>+d[idx.intensity]) };
+}
+(async()=>{
+  const {phases,intens}=await loadCSV('/downloads/Unification_sample_data.csv');
+  new Chart(document.getElementById('fringeChart'),{
+    type:'line',
+    data:{labels:phases.map(p=>p.toString()), datasets:[{label:'Intensity', data:intens}]},
+    options:{scales:{x:{title:{display:true,text:'Phase (deg)'}}, y:{min:0,max:1,title:{display:true,text:'Normalized intensity'}}}}
+  });
+})();
+</script>
+</body></html>
