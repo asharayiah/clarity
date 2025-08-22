@@ -5,84 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Clarity - Home</title>
   <style>
-    body {
-      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-      font-size: 14px; /* smaller font */
-      background: #fafafa;
-      color: #222;
+    /* Base Reset & Layout */
+    html, body {
       height: 100%;
-      line-height: 1.4;
-      padding: 0;
+      margin: 0;
+      font-family: "Montserrat", "Segoe UI", sans-serif;
       display: flex;
       flex-direction: column;
+      color: #222;
+      background: #fafafa;
     }
 
-    header {
-      background: #fff;
-      border-bottom: 1px solid #ddd;
-      padding: 0.6rem 1.2rem; /* reduced spacing */
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header h1 {
-      font-size: 18px;
-      margin: 0;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    nav a {
-      margin-left: 12px;
-      text-decoration: none;
-      color: #444;
-      font-size: 13px;
-      transition: color 0.2s;
-    }
-
-    nav a:hover {
-      color: #000;
-    }
-
-    .infographic {
-      display: flex;
-      justify-content: center;
-      padding: 1rem 0; /* less space */
-    }
-
-    .infographic img {
-      max-width: 25%; /* resized to fit */
-      height: auto;
-      border-radius: 8px;
+    main {
+      flex: 1; /* fill available space so footer sticks to bottom */
     }
 
     section {
-      padding: 0.20rem 0.20rem; /* compact */
-      margin: 0 auto;
-      max-width: 800px;
+      padding: 30px 8%;
+      margin: 0;
+      border-bottom: 1px solid #eee;
     }
 
-    section h2 {
-      font-size: 16px;
-      margin-bottom: 0.1rem;
-      color: #111;
+    h1, h2, h3 {
+      margin: 0 0 10px;
       font-weight: 600;
+      line-height: 1.2;
     }
 
-    section p {
-      margin: 0.10rem 0 0.10rem; /* reduced gaps */
-      font-size: 13px;
-      color: #333;
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.2rem; }
+    p  { font-size: 0.95rem; margin: 0 0 10px; line-height: 1.5; }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 15px 8%;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
     }
 
     footer {
-	  text-align: center;
-      padding: 0.8rem;
-      background: #f0f0f0;
-      font-size: 12px;
-      color: #666;
-      border-top: 1px solid #ddd;
+      background: #111;
+      color: #ddd;
+      text-align: center;
+      padding: 12px;
+      font-size: 0.9rem;
+    }
+
+    /* Compact spacing between sections */
+    section + section {
+      padding-top: 20px;
+    }
+
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
