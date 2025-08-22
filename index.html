@@ -19,53 +19,71 @@
       flex: 1; /* fill available space so footer sticks to bottom */
     }
 
-    section {
-      padding: 30px 8%;
-      margin: 0;
-      border-bottom: 1px solid #eee;
-    }
-
-    h1, h2, h3 {
-      margin: 0 0 10px;
-      font-weight: 600;
-      line-height: 1.2;
-    }
-
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.5rem; }
-    h3 { font-size: 1.2rem; }
-    p  { font-size: 0.95rem; margin: 0 0 10px; line-height: 1.5; }
-
     header {
-      background: #111;
-      color: white;
-      padding: 15px 8%;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 0.6rem 1.2rem; /* reduced spacing */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     header h1 {
+      font-size: 18px;
       margin: 0;
-      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    nav a {
+      margin-left: 12px;
+      text-decoration: none;
+      color: #444;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #000;
+    }
+
+    .infographic {
+      display: flex;
+      padding: 1rem 0; /* less space */
+    }
+
+    section {
+      padding: 0.20rem 0.20rem;
+      margin: 0 auto;
+      max-width: 800px;
+    }
+
+    section h2 {
+      font-size: 16px;
+      margin-bottom: 0.1rem;
+      color: #111;
+      font-weight: 600;
+    }
+
+    section p {
+      margin: 0.10rem 0 0.10rem;
+      font-size: 13px;
+      color: #333;
+    }
+
+    .infographic img {
+      max-width: 30%;
+      height: auto;
+      border-radius: 8px;
     }
 
     footer {
-      background: #111;
-      color: #ddd;
-      text-align: center;
-      padding: 12px;
-      font-size: 0.9rem;
-    }
-
-    /* Compact spacing between sections */
-    section + section {
-      padding-top: 20px;
-    }
-
-    a {
-      color: #0077cc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
+	  text-align: center;
+      padding: 0.8rem;
+      background: #f0f0f0;
+      font-size: 12px;
+      color: #666;
+      border-top: 1px solid #ddd;
     }
   </style>
 </head>
@@ -75,8 +93,8 @@
     <nav>
 	<a href="timeline.html">Creation & Civilizations</a>
 	<a href="philosophy.html">Philosophy</a>
-	<a href="physics.html">Physics Proofs</a>
-	<a href="biological.html">Biological Experiments</a>
+	<a href="physics.html">Physics</a>
+	<a href="biological.html">Biology</a>
 	<a href="consciousness.html">Consciousness</a>
 	<a href="energy.html">Energy & Matter</a>
 	<a href="ethics.html">Ethics</a>
@@ -84,6 +102,7 @@
   </header>
 
 <main>
+
   <section>
     <h2>Welcome to Clarity</h2>
     <p>
@@ -104,9 +123,13 @@
       vision for the future.
     </p>
   </section>
+
 </main>
+
   <footer>
     &copy; 2025 Clarity Initiative. All rights reserved.
   </footer>
+
+
 </body>
 </html>
