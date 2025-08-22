@@ -3,23 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="images/favicon.png">
-  <title>Clarity - Energy & Matter</title>
+  <title>Clarity - Energy</title>
   <style>
-    body {
-      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    .flex-container {
+      display: flex;
+      align-items: end;
+      background-color: black;
+      padding-left: 20px;
+      padding-right: 20px;
+      gap: 20px;
+    }
+    .left-image {
+      max-width: 20%;
+      height: auto;
+    }    
+    .text-wrapper {
+      flex-grow: 1;
+    }
+   .nav-item {
+     color: #FFD700;
+    }
+    html, body {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      font-family: "Montserrat", "Segoe UI", sans-serif;
       font-size: 14px; /* smaller font */
-      line-height: 1.4;
+      color: #222;
+      background: #fafafa;
       margin: 0;
       padding: 0;
-      background: #fafafa;
-      color: #222;
+    }
+
+    main {
+      flex: 1;
     }
 
     header {
       background: #fff;
       border-bottom: 1px solid #ddd;
-      padding: 0.6rem 1.2rem; /* reduced spacing */
+      padding: 0rem 0rem; 
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -41,11 +64,20 @@
     }
 
     nav a:hover {
-      color: #000;
+      color: #FFFFFF;
+    }
+
+    .spiral-container img {
+      margin: 0.5rem 0.5rem;
+      display: flex;
+      padding: 1rem 0;
+      max-width: 25%;
+      height: auto;
+      border-radius: 8px;
     }
 
     section {
-      padding: 0.20rem 0.20rem; /* compact */
+      padding: 0.20rem 0.20rem;
       margin: 0 auto;
       max-width: 800px;
     }
@@ -58,22 +90,19 @@
     }
 
     section p {
-      margin: 0.10rem 0 0.10rem; /* reduced gaps */
+      margin: 0.10rem 0 0.10rem;
       font-size: 13px;
       color: #333;
     }
 
-    .spiral-container img {
-      margin: 0.5rem 0.5rem;
-      display: flex;
-      padding: 1rem 0;
-      max-width: 25%;
+    .infographic img {
+      max-width: 30%;
       height: auto;
       border-radius: 8px;
     }
 
     footer {
-      text-align: center;
+	  text-align: center;
       padding: 0.8rem;
       background: #f0f0f0;
       font-size: 12px;
@@ -82,20 +111,24 @@
     }
   </style>
 </head>
-
 <body>
   <header>
-    <h1>Energy & Matter</h1>
-    <nav>
-	<a href="index.html">Home</a>
-	<a href="timeline.html">Creation & Civilizations</a>
-	<a href="philosophy.html">Philosophy</a>
-	<a href="physics.html">Physics</a>
-	<a href="metaphysics.html">Metaphysics</a>
-	<a href="biology.html">Biology</a>
-	<a href="ethics.html">Ethics</a>
-    </nav>
+    <div class="flex-container">
+      <img src="images/clarity-banar.png" alt="Creation & Civilizations" class="left-image"/>
+      <p class="text-wrapper">
+        <nav>
+	<a href="index.html" class="nav-item">Home</a>
+	<a href="timeline.html" class="nav-item">Creation & Civilizations</a>
+	<a href="philosophy.html" class="nav-item">Philosophy</a>
+	<a href="physics.html" class="nav-item">Physics</a>
+	<a href="metaphysics.html" class="nav-item">Metaphysics & Consciousness</a>
+	<a href="biology.html" class="nav-item">Biology</a>
+	<a href="ethics.html" class="nav-item">Ethics</a>
+      </p>
+    </div>
   </header>
+
+<main>
 
     <section id="intro">
         <h2>From Concept to Tangible Effects</h2>
@@ -135,6 +168,8 @@
         <p>Understanding this journey sets the foundation for seeing the hidden patterns in physics, metaphysics & consciousness, and matter & energy, biology. Next, explore the <strong>Physics Proof-of-Concepts</strong> pages to witness how these ideas manifest in measurable reality.</p>
         <a href="physics.html" class="cta-button">Explore Physics Proofs</a>
     </section>
+
+</main>
 
   <footer>
     &copy; 2025 Clarity Initiative. All rights reserved.
