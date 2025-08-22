@@ -1,49 +1,176 @@
-<!DOCTYPE html><html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>The Clarity Project</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-.unity-banner, .unity-banner-fallback{
-  background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-  color:#fff; padding:1.5rem; margin-bottom:1.5rem; border-radius:12px;
-  box-shadow:0 2px 10px rgba(0,0,0,.5); text-align:center;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-.unity-banner { opacity:0; animation:fadeInGlow 1.5s ease forwards; }
-.unity-banner h2, .unity-banner-fallback h2{ margin:0 0 .5rem; font-size:1.8rem; font-weight:600; color:#00e6e6; }
-.unity-banner p, .unity-banner-fallback p{ margin:0; font-size:1.1rem; color:#ccc; }
-@media (max-width:600px){ .unity-banner h2,.unity-banner-fallback h2{font-size:1.4rem;} .unity-banner p,.unity-banner-fallback p{font-size:1rem;} }
-@keyframes fadeInGlow { 0%{opacity:0; box-shadow:0 0 0 rgba(0,230,230,0)} 100%{opacity:1; box-shadow:0 0 20px rgba(0,230,230,.3)} }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity – Explore Life, Consciousness & Science</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfdfd;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+        }
+        header p {
+            font-size: 1.3rem;
+            margin-top: 1rem;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #2a5298;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            padding: 1rem;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+        }
+        main {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+        section {
+            margin-bottom: 4rem;
+        }
+        section h2 {
+            color: #1e3c72;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .section-intro {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .card {
+            flex: 1 1 300px;
+            background-color: #f2f2f2;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .card h3 {
+            color: #1e3c72;
+            margin-top: 0;
+        }
+        .card p {
+            margin-bottom: 1rem;
+        }
+        .cta-button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #ff7e5f;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #feb47b;
+        }
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+    </style>
 </head>
-<body class="bg-white text-slate-800">
-<header class="border-b"><div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-  <a href="/" class="font-bold">The Clarity Project</a>
-  <nav class="hidden md:flex gap-6 text-sm">
-    <a href="/#stage1" class="hover:text-sky-700">Proofs</a>
-    <a href="/proofs/metaphysics.html" class="hover:text-sky-700">Metaphysics</a>
-    <a href="/outreach.html" class="hover:text-sky-700">Outreach</a>
-    <a href="/updates.html" class="hover:text-sky-700">Updates</a>
-  </nav>
-</div></header>
+<body>
 
-<section class="bg-sky-50">
-  <div class="max-w-7xl mx-auto px-4 py-12">
-    <h1 class="text-3xl md:text-4xl font-extrabold">A Universal Scientific Alliance for Humanity</h1>
-    <p class="mt-2 text-lg text-slate-700">Public-safe proofs that reopen causality and bridge to mind, ethics, and spiritual reality.</p>
-  </div>
-</section>
+<header>
+    <h1>Clarity</h1>
+    <p>Exploring Life, Consciousness, Energy, and the Ethical Application of Knowledge</p>
+</header>
 
-<section id="stage1" class="max-w-7xl mx-auto px-4 py-10">
-  <h2 class="text-2xl font-bold">Stage-1 · Physics Shockwave</h2>
-  <div class="mt-6 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-    <a class="border rounded-2xl p-4 hover:shadow" href="/proofs/entanglement.html">Entanglement</a>
-    <a class="border rounded-2xl p-4 hover:shadow" href="/proofs/superposition.html">Superposition</a>
-    <a class="border rounded-2xl p-4 hover:shadow" href="/proofs/matter-wave.html">Wave–Particle</a>
-    <a class="border rounded-2xl p-4 hover:shadow" href="/proofs/unification.html">Unification</a>
-  </div>
-</section>
+<nav>
+    <a href="philosophy.html">Philosophy</a>
+    <a href="timeline.html">Creation & Civilizations</a>
+    <a href="physics.html">Physics Proofs</a>
+    <a href="biological.html">Biological Experiments</a>
+    <a href="consciousness.html">Consciousness</a>
+    <a href="energy.html">Energy & Matter</a>
+    <a href="ethics.html">Ethics</a>
+</nav>
 
-<footer class="border-t py-6 text-center text-sm text-slate-500">© <span id="year"></span> The Clarity Project</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear()</script>
-</body></html>
+<main>
+    <section id="intro">
+        <h2>Journey Through Knowledge</h2>
+        <p class="section-intro">Welcome to Clarity—a guided exploration of philosophy, science, consciousness, and ethical responsibility. Each section builds upon the last, forming a cohesive understanding of life and its deeper patterns.</p>
+    </section>
+
+    <section id="cards">
+        <div class="card-container">
+            <div class="card">
+                <h3>Philosophy & Creation</h3>
+                <p>Discover the story of creation, the interplay of spirit and matter, and the deeper philosophical framework guiding our understanding.</p>
+                <a href="philosophy.html" class="cta-button">Explore Philosophy</a>
+            </div>
+            <div class="card">
+                <h3>Physics Proofs</h3>
+                <p>See experiments bridging quantum mechanics, relativity, and hidden patterns, highlighting phenomena that challenge conventional understanding.</p>
+                <a href="physics.html" class="cta-button">Explore Physics</a>
+            </div>
+            <div class="card">
+                <h3>Biological Experiments</h3>
+                <p>Observe measurable effects on human physiology and coherence, linking physical principles to living systems and well-being.</p>
+                <a href="biological.html" class="cta-button">Explore Biology</a>
+            </div>
+            <div class="card">
+                <h3>Consciousness Studies</h3>
+                <p>Investigate awareness, perception, and subtle patterns of consciousness, bridging mind, heart, and spirit in safe experiments.</p>
+                <a href="consciousness.html" class="cta-button">Explore Consciousness</a>
+            </div>
+            <div class="card">
+                <h3>Energy & Matter Manipulation</h3>
+                <p>Explore controlled experiments demonstrating interaction with energy and matter, connecting previous insights into tangible effects.</p>
+                <a href="energy.html" class="cta-button">Explore Energy</a>
+            </div>
+            <div class="card">
+                <h3>Ethics & Responsibility</h3>
+                <p>Learn how all discoveries must be guided by compassion, transparency, safety, and conscious stewardship to benefit life and society.</p>
+                <a href="ethics.html" class="cta-button">Explore Ethics</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Clarity – All Rights Reserved | Follow: <a href="https://twitter.com/asharayiah" target="_blank" style="color:#feb47b;">@asharayiah</a></p>
+</footer>
+
+</body>
+</html>
