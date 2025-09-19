@@ -1,0 +1,494 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250919133438
+Username: ALAEDDIN-SHARAY\ashar
+RunAs User: ALAEDDIN-SHARAY\ashar
+Configuration Name: 
+Machine: ALAEDDIN-SHARAY (Microsoft Windows NT 10.0.22631.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 20096
+PSVersion: 5.1.22621.5697
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.22621.5697
+BuildVersion: 10.0.22621.5697
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\breakthespell_work\deploy_log.txt
+PS C:\breakthespell_work> Write-Host "=== DEPLOY + PR DEBUG START ==="
+=== DEPLOY + PR DEBUG START ===
+PS C:\breakthespell_work> Write-Host "Working folder: $(Get-Location)"
+Working folder: C:\breakthespell_work
+PS C:\breakthespell_work> # show a little context
+PS C:\breakthespell_work> Write-Host "`n-- Top-level files --"
+
+-- Top-level files --
+PS C:\breakthespell_work> Get-ChildItem -Force | Select-Object Name,Length,LastWriteTime
+
+Name                          Length LastWriteTime
+----                          ------ -------------
+breakpkg                             19/09/2025 13:22:01
+breakthespell_package_local          19/09/2025 13:18:35
+tmp-clarity-repo                     19/09/2025 13:33:27
+build_log.txt                 1428   19/09/2025 13:18:36
+crack.png                     22323  19/09/2025 13:18:32
+deploy_log.txt                0      19/09/2025 13:34:38
+factory.png                   25896  19/09/2025 13:18:32
+final_breakthespell_local.zip 319366 19/09/2025 13:18:36
+make_breakthespell_package.py 8067   19/09/2025 13:16:51
+make_placeholders.py          1410   19/09/2025 12:46:29
+make_placeholders_fixed.py    1142   19/09/2025 13:18:31
+spell.png                     18284  19/09/2025 13:18:32
+truelight.png                 19714  19/09/2025 13:18:32
+
+
+PS C:\breakthespell_work> # safe remove stale clone
+PS C:\breakthespell_work> if (Test-Path ".\tmp-clarity-repo") {
+  Write-Host "`nRemoving stale tmp-clarity-repo..."
+  Remove-Item .\tmp-clarity-repo -Recurse -Force -ErrorAction SilentlyContinue
+}
+
+Removing stale tmp-clarity-repo...
+PS C:\breakthespell_work> # clone
+PS C:\breakthespell_work> $Repo = "https://github.com/asharayiah/clarity.git"
+PS C:\breakthespell_work> Write-Host "`nCloning repo: $Repo"
+
+Cloning repo: https://github.com/asharayiah/clarity.git
+PS C:\breakthespell_work> git clone $Repo tmp-clarity-repo --depth 1 2>&1 | Tee-Object -FilePath (Join-Path $work "clone_output.txt")
+git : Cloning into 'tmp-clarity-repo'...
+At line:1 char:1
++ git clone $Repo tmp-clarity-repo --depth 1 2>&1 | Tee-Object -FilePat ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Cloning into 'tmp-clarity-repo'...:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+PS C:\breakthespell_work> if ($LASTEXITCODE -ne 0) {
+  Write-Host "git clone failed (see clone_output.txt). Exiting." -ForegroundColor Red
+  Stop-Transcript
+  Read-Host "Press Enter to close window"
+  exit 1
+}
+PS C:\breakthespell_work> # enter repo
+PS C:\breakthespell_work> Set-Location .\tmp-clarity-repo
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "`nIn repo: $(Get-Location)"
+
+In repo: C:\breakthespell_work\tmp-clarity-repo
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "`nRemote info:"
+
+Remote info:
+PS C:\breakthespell_work\tmp-clarity-repo> git remote show origin 2>&1 | Tee-Object -FilePath (Join-Path $work "remote_info.txt")
+* remote origin
+  Fetch URL: https://github.com/asharayiah/clarity.git
+  Push  URL: https://github.com/asharayiah/clarity.git
+  HEAD branch: main
+  Remote branch:
+    main tracked
+  Local branch configured for 'git pull':
+    main merges with remote main
+  Local ref configured for 'git push':
+    main pushes to main (up to date)
+PS C:\breakthespell_work\tmp-clarity-repo> # detect default branch
+PS C:\breakthespell_work\tmp-clarity-repo> $defaultBranch = 'main'
+PS C:\breakthespell_work\tmp-clarity-repo> try {
+  $line = git remote show origin | Select-String -Pattern 'HEAD branch'
+  if ($line) { $defaultBranch = ($line -split ':')[1].Trim() }
+} catch {}
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "Default branch: $defaultBranch"
+Default branch: main
+PS C:\breakthespell_work\tmp-clarity-repo> # create branch
+PS C:\breakthespell_work\tmp-clarity-repo> $Branch = "breakthespell/add-campaign-{0}" -f (Get-Date -Format "yyyyMMddHHmm")
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "`nCreating branch: $Branch"
+
+Creating branch: breakthespell/add-campaign-202509191334
+PS C:\breakthespell_work\tmp-clarity-repo> git checkout -b $Branch 2>&1 | Tee-Object -FilePath (Join-Path $work "checkout_output.txt")
+git : Switched to a new branch 'breakthespell/add-campaign-202509191334'
+At line:1 char:1
++ git checkout -b $Branch 2>&1 | Tee-Object -FilePath (Join-Path $work  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Switched to a n...n-202509191334':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+PS C:\breakthespell_work\tmp-clarity-repo> if ($LASTEXITCODE -ne 0) {
+  Write-Host "git checkout failed. See checkout_output.txt" -ForegroundColor Red
+  Stop-Transcript
+  Read-Host "Press Enter to close window"
+  exit 1
+}
+PS C:\breakthespell_work\tmp-clarity-repo> # find package source (sibling)
+PS C:\breakthespell_work\tmp-clarity-repo> $repoRoot = (Get-Location).Path
+PS C:\breakthespell_work\tmp-clarity-repo> $parent = Split-Path $repoRoot -Par
+PS C:\breakthespell_work\tmp-clarity-repo> # push current branch to origin
+PS C:\breakthespell_work\tmp-clarity-repo> git push origin HEAD
+
+PS C:\breakthespell_work\tmp-clarity-repo> # then verify remote head exists
+PS C:\breakthespell_work\tmp-clarity-repo> $branch = git rev-parse --abbrev-ref HEAD
+PS C:\breakthespell_work\tmp-clarity-repo> git ls-remote --heads origin $branch
+
+PS C:\breakthespell_work\tmp-clarity-repo> gh auth login
+
+! First copy your one-time code: 86B7-3D75
+Press Enter to open https://github.com/login/device in your browser...
+PS C:\breakthespell_work\tmp-clarity-repo> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+PS C:\breakthespell_work\tmp-clarity-repo> # follow the interactive prompts to authenticate (choose GitHub.com, HTTPS, and open browser)
+PS C:\breakthespell_work\tmp-clarity-repo> # then retry:
+PS C:\breakthespell_work\tmp-clarity-repo> git push origin HEAD
+
+PS C:\breakthespell_work\tmp-clarity-repo> git ls-remote --heads origin $branch
+
+PS C:\breakthespell_work\tmp-clarity-repo> git push origin HEAD
+
+PS C:\breakthespell_work\tmp-clarity-repo> cd C:\breakthespell_work\tmp-clarity-repo
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "PWD:"; Get-Location
+PWD:
+
+Path
+----
+C:\breakthespell_work\tmp-clarity-repo
+
+
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "`nCurrent branch:"; git rev-parse --abbrev-ref HEAD
+
+Current branch:
+
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "`nTop-level files in repo (first 40):"
+
+Top-level files in repo (first 40):
+PS C:\breakthespell_work\tmp-clarity-repo> Get-ChildItem -Force | Select Name,Length -First 40
+
+Name              Length
+----              ------
+.git
+assets
+downloads
+images
+partials
+proofs
+biology.html      5198
+CNAME             18
+energy.html       5542
+ethics.html       4942
+feed.xml          1212
+index.ar.html     7141
+index.html        4056
+index.ru.html     7625
+index.zh.html     6755
+index0.html       9350
+index_en.html     7159
+LICENSE           11558
+metaphysics.html  5168
+outreach.html     4450
+philosophy.html   5445
+physics.html      5033
+README.md         606
+Story of Life.png 676943
+timeline.html     4494
+updates.html      1201
+
+
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "`nGit status (porcelain):"
+
+Git status (porcelain):
+PS C:\breakthespell_work\tmp-clarity-repo> git status --porcelain
+
+PS C:\breakthespell_work\tmp-clarity-repo> cd C:\breakthespell_work
+PS C:\breakthespell_work> Write-Host "Parent folder listing (first 40):"
+Parent folder listing (first 40):
+PS C:\breakthespell_work> Get-ChildItem -Force | Select Name,Length -First 40
+
+Name                          Length
+----                          ------
+breakpkg
+breakthespell_package_local
+tmp-clarity-repo
+build_log.txt                 1428
+checkout_output.txt           726
+clone_output.txt              702
+crack.png                     22323
+deploy_log.txt                5733
+factory.png                   25896
+final_breakthespell_local.zip 319366
+make_breakthespell_package.py 8067
+make_placeholders.py          1410
+make_placeholders_fixed.py    1142
+remote_info.txt               684
+spell.png                     18284
+truelight.png                 19714
+
+
+PS C:\breakthespell_work> Write-Host "`nDoes breakpkg exist?"; Test-Path .\breakpkg
+
+Does breakpkg exist?
+True
+PS C:\breakthespell_work> If (Test-Path .\breakpkg) { Get-ChildItem .\breakpkg -Recurse -Depth 2 | Select-Object FullName,Length -First 30 }
+
+FullName                                                   Length
+--------                                                   ------
+C:\breakthespell_work\breakpkg\breakthespell
+C:\breakthespell_work\breakpkg\images
+C:\breakthespell_work\breakpkg\breakthespell.html          280
+C:\breakthespell_work\breakpkg\captions.json               3557
+C:\breakthespell_work\breakpkg\deploy_pr_instructions.sh   480
+C:\breakthespell_work\breakpkg\README.txt                  98
+C:\breakthespell_work\breakpkg\scheduling_template.csv     6214
+C:\breakthespell_work\breakpkg\_redirects                  432
+C:\breakthespell_work\breakpkg\breakthespell\ar
+C:\breakthespell_work\breakpkg\breakthespell\de
+C:\breakthespell_work\breakpkg\breakthespell\el
+C:\breakthespell_work\breakpkg\breakthespell\en
+C:\breakthespell_work\breakpkg\breakthespell\es
+C:\breakthespell_work\breakpkg\breakthespell\fr
+C:\breakthespell_work\breakpkg\breakthespell\hi
+C:\breakthespell_work\breakpkg\breakthespell\ru
+C:\breakthespell_work\breakpkg\breakthespell\zh
+C:\breakthespell_work\breakpkg\breakthespell\ar\index.html 330
+C:\breakthespell_work\breakpkg\breakthespell\de\index.html 291
+C:\breakthespell_work\breakpkg\breakthespell\el\index.html 331
+C:\breakthespell_work\breakpkg\breakthespell\en\index.html 282
+C:\breakthespell_work\breakpkg\breakthespell\es\index.html 285
+C:\breakthespell_work\breakpkg\breakthespell\fr\index.html 292
+C:\breakthespell_work\breakpkg\breakthespell\hi\index.html 351
+C:\breakthespell_work\breakpkg\breakthespell\ru\index.html 335
+C:\breakthespell_work\breakpkg\breakthespell\zh\index.html 295
+C:\breakthespell_work\breakpkg\images\crack
+C:\breakthespell_work\breakpkg\images\factory
+C:\breakthespell_work\breakpkg\images\spell
+C:\breakthespell_work\breakpkg\images\truelight
+
+
+PS C:\breakthespell_work> Write-Host "`nDoes breakthespell_package_local exist?"; Test-Path .\breakthespell_package_local
+
+Does breakthespell_package_local exist?
+True
+PS C:\breakthespell_work> If (Test-Path .\breakthespell_package_local) { Get-ChildItem .\breakthespell_package_local -Recurse -Depth 2 | Select-Object FullName,Length -First 30 }
+
+FullName                                                                      Length
+--------                                                                      ------
+C:\breakthespell_work\breakthespell_package_local\breakthespell
+C:\breakthespell_work\breakthespell_package_local\images
+C:\breakthespell_work\breakthespell_package_local\breakthespell.html          280
+C:\breakthespell_work\breakthespell_package_local\captions.json               3557
+C:\breakthespell_work\breakthespell_package_local\deploy_pr_instructions.sh   480
+C:\breakthespell_work\breakthespell_package_local\README.txt                  98
+C:\breakthespell_work\breakthespell_package_local\scheduling_template.csv     6214
+C:\breakthespell_work\breakthespell_package_local\_redirects                  432
+C:\breakthespell_work\breakthespell_package_local\breakthespell\ar
+C:\breakthespell_work\breakthespell_package_local\breakthespell\de
+C:\breakthespell_work\breakthespell_package_local\breakthespell\el
+C:\breakthespell_work\breakthespell_package_local\breakthespell\en
+C:\breakthespell_work\breakthespell_package_local\breakthespell\es
+C:\breakthespell_work\breakthespell_package_local\breakthespell\fr
+C:\breakthespell_work\breakthespell_package_local\breakthespell\hi
+C:\breakthespell_work\breakthespell_package_local\breakthespell\ru
+C:\breakthespell_work\breakthespell_package_local\breakthespell\zh
+C:\breakthespell_work\breakthespell_package_local\breakthespell\ar\index.html 330
+C:\breakthespell_work\breakthespell_package_local\breakthespell\de\index.html 291
+C:\breakthespell_work\breakthespell_package_local\breakthespell\el\index.html 331
+C:\breakthespell_work\breakthespell_package_local\breakthespell\en\index.html 282
+C:\breakthespell_work\breakthespell_package_local\breakthespell\es\index.html 285
+C:\breakthespell_work\breakthespell_package_local\breakthespell\fr\index.html 292
+C:\breakthespell_work\breakthespell_package_local\breakthespell\hi\index.html 351
+C:\breakthespell_work\breakthespell_package_local\breakthespell\ru\index.html 335
+C:\breakthespell_work\breakthespell_package_local\breakthespell\zh\index.html 295
+C:\breakthespell_work\breakthespell_package_local\images\crack
+C:\breakthespell_work\breakthespell_package_local\images\factory
+C:\breakthespell_work\breakthespell_package_local\images\spell
+C:\breakthespell_work\breakthespell_package_local\images\truelight
+
+
+PS C:\breakthespell_work> cd C:\breakthespell_work\tmp-clarity-repo
+PS C:\breakthespell_work\tmp-clarity-repo> $repoRoot = (Get-Location).Path
+PS C:\breakthespell_work\tmp-clarity-repo> $parent = Split-Path $repoRoot -Parent
+PS C:\breakthespell_work\tmp-clarity-repo> $pkg1 = Join-Path $parent 'breakpkg'
+PS C:\breakthespell_work\tmp-clarity-repo> $pkg2 = Join-Path $parent 'breakthespell_package_local'
+PS C:\breakthespell_work\tmp-clarity-repo> if (Test-Path $pkg1) { $source = $pkg1 } elseif (Test-Path $pkg2) { $source = $pkg2 } else {
+  Write-Host "ERROR: no package folder found in parent. Run the generator first." -ForegroundColor Red
+  exit 1
+}
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "Copying from: $source"
+Copying from: C:\breakthespell_work\breakpkg
+PS C:\breakthespell_work\tmp-clarity-repo> Robocopy $source $repoRoot /MIR | Out-Null
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "`nNow show git status (what changed):"
+
+Now show git status (what changed):
+PS C:\breakthespell_work\tmp-clarity-repo> git status --porcelain
+
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "`nAdd, commit, push:"
+
+Add, commit, push:
+PS C:\breakthespell_work\tmp-clarity-repo> git add -A
+
+PS C:\breakthespell_work\tmp-clarity-repo> git commit -m "Add BreakTheSpell campaign assets" || Write-Host "commit returned non-zero (maybe nothing to commit)"
+At line:1 char:51
++ git commit -m "Add BreakTheSpell campaign assets" || Write-Host "comm ...
++                                                   ~~
+The token '||' is not a valid statement separator in this version.
+At line:1 char:51
++ git commit -m "Add BreakTheSpell campaign assets" || Write-Host "comm ...
++                                                   ~~
+The token '||' is not a valid statement separator in this version.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : InvalidEndOfLine
+
+PS C:\breakthespell_work\tmp-clarity-repo> git push origin HEAD || Write-Host "git push failed — run 'gh auth login' then retry push"
+At line:1 char:22
++ git push origin HEAD || Write-Host "git push failed — run 'gh auth lo ...
++                      ~~
+The token '||' is not a valid statement separator in this version.
+At line:1 char:22
++ git push origin HEAD || Write-Host "git push failed — run 'gh auth lo ...
++                      ~~
+The token '||' is not a valid statement separator in this version.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : InvalidEndOfLine
+
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "`nDone. Branch now at:"; git rev-parse --abbrev-ref HEAD
+
+Done. Branch now at:
+
+PS C:\breakthespell_work\tmp-clarity-repo> cls
+PS C:\breakthespell_work\tmp-clarity-repo> Set-Location C:\breakthespell_work\tmp-clarity-repo
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "=== BRANCH ==="
+=== BRANCH ===
+PS C:\breakthespell_work\tmp-clarity-repo> git rev-parse --abbrev-ref HEAD
+fatal: not a git repository (or any of the parent directories): .git
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "`n=== TOP-LEVEL FILES (repo root) ==="
+
+=== TOP-LEVEL FILES (repo root) ===
+PS C:\breakthespell_work\tmp-clarity-repo> Get-ChildItem -Force | Select-Object Name,Length -First 40
+
+Name                      Length
+----                      ------
+breakthespell
+images
+breakthespell.html        280
+captions.json             3557
+deploy_pr_instructions.sh 480
+README.txt                98
+scheduling_template.csv   6214
+_redirects                432
+
+
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "`n=== GIT STATUS (porcelain) ==="
+
+=== GIT STATUS (porcelain) ===
+PS C:\breakthespell_work\tmp-clarity-repo> git status --porcelain
+fatal: not a git repository (or any of the parent directories): .git
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "`n=== Check for package siblings ==="
+
+=== Check for package siblings ===
+PS C:\breakthespell_work\tmp-clarity-repo> if (Test-Path ..\breakpkg) {
+  Write-Host "Found sibling: ..\breakpkg"
+  Get-ChildItem ..\breakpkg -Recurse | Select-Object FullName,Length -First 30
+} elseif (Test-Path ..\breakthespell_package_local) {
+  Write-Host "Found sibling: ..\breakthespell_package_local"
+  Get-ChildItem ..\breakthespell_package_local -Recurse | Select-Object FullName,Length -First 30
+} else {
+  Write-Host "No package folder found beside repo (expected breakpkg or breakthespell_package_local)."
+}
+Found sibling: ..\breakpkg
+
+FullName                                                   Length
+--------                                                   ------
+C:\breakthespell_work\breakpkg\breakthespell
+C:\breakthespell_work\breakpkg\images
+C:\breakthespell_work\breakpkg\breakthespell.html          280
+C:\breakthespell_work\breakpkg\captions.json               3557
+C:\breakthespell_work\breakpkg\deploy_pr_instructions.sh   480
+C:\breakthespell_work\breakpkg\README.txt                  98
+C:\breakthespell_work\breakpkg\scheduling_template.csv     6214
+C:\breakthespell_work\breakpkg\_redirects                  432
+C:\breakthespell_work\breakpkg\breakthespell\ar
+C:\breakthespell_work\breakpkg\breakthespell\de
+C:\breakthespell_work\breakpkg\breakthespell\el
+C:\breakthespell_work\breakpkg\breakthespell\en
+C:\breakthespell_work\breakpkg\breakthespell\es
+C:\breakthespell_work\breakpkg\breakthespell\fr
+C:\breakthespell_work\breakpkg\breakthespell\hi
+C:\breakthespell_work\breakpkg\breakthespell\ru
+C:\breakthespell_work\breakpkg\breakthespell\zh
+C:\breakthespell_work\breakpkg\breakthespell\ar\index.html 330
+C:\breakthespell_work\breakpkg\breakthespell\de\index.html 291
+C:\breakthespell_work\breakpkg\breakthespell\el\index.html 331
+C:\breakthespell_work\breakpkg\breakthespell\en\index.html 282
+C:\breakthespell_work\breakpkg\breakthespell\es\index.html 285
+C:\breakthespell_work\breakpkg\breakthespell\fr\index.html 292
+C:\breakthespell_work\breakpkg\breakthespell\hi\index.html 351
+C:\breakthespell_work\breakpkg\breakthespell\ru\index.html 335
+C:\breakthespell_work\breakpkg\breakthespell\zh\index.html 295
+C:\breakthespell_work\breakpkg\images\crack
+C:\breakthespell_work\breakpkg\images\factory
+C:\breakthespell_work\breakpkg\images\spell
+C:\breakthespell_work\breakpkg\images\truelight
+
+
+PS C:\breakthespell_work\tmp-clarity-repo> # copy (mirrors package into repo root)
+PS C:\breakthespell_work\tmp-clarity-repo> if (Test-Path ..\breakpkg) { $src = "..\breakpkg" } elseif (Test-Path ..\breakthespell_package_local) { $src = "..\breakthespell_package_local" } else { Write-Host "No source package found; stop."; exit 1 }
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "Copying from: $src"
+Copying from: ..\breakpkg
+PS C:\breakthespell_work\tmp-clarity-repo> Robocopy $src . /MIR | Out-Null
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "`n=== git status after copy ==="
+
+=== git status after copy ===
+PS C:\breakthespell_work\tmp-clarity-repo> git status --porcelain
+
+PS C:\breakthespell_work\tmp-clarity-repo> # add & commit (capture output)
+PS C:\breakthespell_work\tmp-clarity-repo> git add -A
+
+PS C:\breakthespell_work\tmp-clarity-repo> $commitOut = git commit -m "Add BreakTheSpell campaign assets" 2>&1
+PS C:\breakthespell_work\tmp-clarity-repo> if ($LASTEXITCODE -ne 0) {
+    Write-Host "`nCommit may have failed or nothing to commit. Git output:" 
+    $commitOut
+} else {
+    Write-Host "`nCommit succeeded. Git output:"
+    $commitOut
+}
+
+Commit may have failed or nothing to commit. Git output:
+git : fatal: not a git repository (or any of the parent directories): .git
+At line:1 char:14
++ $commitOut = git commit -m "Add BreakTheSpell campaign assets" 2>&1
++              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (fatal: not a gi...ectories): .git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+PS C:\breakthespell_work\tmp-clarity-repo> # push
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host "`nPushing branch to origin..."
+
+Pushing branch to origin...
+PS C:\breakthespell_work\tmp-clarity-repo> $pushOut = git push origin HEAD 2>&1
+PS C:\breakthespell_work\tmp-clarity-repo> Write-Host $pushOut
+fatal: not a git repository (or any of the parent directories): .git
+PS C:\breakthespell_work\tmp-clarity-repo> if ($LASTEXITCODE -ne 0) {
+    Write-Host "`nPush failed with exit code $LASTEXITCODE. Run: gh auth login  (then retry 'git push origin HEAD')" -ForegroundColor Yellow
+}
+
+Push failed with exit code 128. Run: gh auth login  (then retry 'git push origin HEAD')
+PS C:\breakthespell_work\tmp-clarity-repo> cls
+PS C:\breakthespell_work\tmp-clarity-repo> # Run this in a NEW PowerShell window. It is self-contained and logs to C:\breakthespell_work\deploy_log.txt
+PS C:\breakthespell_work\tmp-clarity-repo> $work = "C:\breakthespell_work"
+PS C:\breakthespell_work\tmp-clarity-repo> If (-Not (Test-Path $work)) { Write-Host "Working folder not found: $work" -ForegroundColor Red; exit 1 }
+PS C:\breakthespell_work\tmp-clarity-repo> Set-Location $work
+PS C:\breakthespell_work> $log = Join-Path $work "deploy_log.txt"
+PS C:\breakthespell_work> If (Test-Path $log) { Remove-Item $log -Force }
+Remove-Item : Cannot remove item C:\breakthespell_work\deploy_log.txt: The process cannot access the file 
+'C:\breakthespell_work\deploy_log.txt' because it is being used by another process.
+At line:1 char:23
++ If (Test-Path $log) { Remove-Item $log -Force }
++                       ~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (C:\breakthespell_work\deploy_log.txt:FileInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\breakthespell_work\deploy_log.txt: The process cannot access the file
+'C:\breakthespell_work\deploy_log.txt' because it is being used by another process.
+At line:1 char:23
++ If (Test-Path $log) { Remove-Item $log -Force }
++                       ~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (C:\breakthespell_work\deploy_log.txt:FileInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+PS C:\breakthespell_work> Start-Transcript -Path $log
+**********************
+Windows PowerShell transcript end
+End time: 20250919135213
+**********************
